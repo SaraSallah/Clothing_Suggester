@@ -5,14 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:imeOptions="flagNoFullscreen"
+        android:background="@drawable/search_rounded"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@null"
+        android:queryHint="@string/search"
+        android:searchIcon="@drawable/ic_search"
+        android:theme="@style/ThemeOverlay.Material3.Search"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
+        android:id="@+id/text_View_temp"
+        android:layout_width="94dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="68dp"
+        android:text="citmkkkky"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
+    <TextView
+        android:id="@+id/text_view_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
+        android:text="city"
+        app:layout_constraintStart_toEndOf="@+id/text_View_temp"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
+    <TextView
+        android:id="@+id/text_view_humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
+        android:text="humidity"
+        app:layout_constraintStart_toEndOf="@+id/text_view_city"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+    >
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
