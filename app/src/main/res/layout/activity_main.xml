@@ -6,13 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/rounded"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="-7dp">
+
+
+    </View>
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="@drawable/search_rounded"
+        android:iconifiedByDefault="false"
+        android:imeOptions="flagNoFullscreen"
+        android:queryBackground="@null"
+        android:queryHint="@string/search"
+        android:searchIcon="@drawable/ic_search"
+        android:theme="@style/ThemeOverlay.Material3.Search"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView_sunny"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/sunny"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="132dp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView_cloud"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/cloud"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="132dp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView_shower"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/shower"
+        tools:ignore="MissingConstraints" />
+
     <TextView
+        android:id="@+id/text_View_temp"
+        android:layout_width="94dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:text="22"
+        android:textColor="@color/white"
+        android:textSize="53dp"
+        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView_shower"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_view_city"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_city"
+        tools:ignore="NotSibling" />
+
+    <TextView
+        android:id="@+id/text_view_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="200dp"
+        android:text="city"
+        android:textSize="52dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
+    <TextView
+        android:id="@+id/text_view_main_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="main"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView_shower"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toEndOf="@+id/text_View_temp"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_city" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
