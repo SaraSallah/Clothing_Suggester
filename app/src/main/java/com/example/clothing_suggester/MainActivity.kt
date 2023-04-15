@@ -17,25 +17,30 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        WeatherManager().makeRequestUsingOKHTTP("Helwan",::ui, ::onError)
+        WeatherManager().makeRequestUsingOKHTTP("Cairo",::ui, ::onError)
         binding.searchBar.setOnQueryTextListener(this)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        WeatherManager().makeRequestUsingOKHTTP(query!!,::ui, ::onError)
+        query.let {
+            binding.apply {
+                WeatherManager().makeRequestUsingOKHTTP(it!!,::ui, ::onError)
+            }
+        }
         return true
     }
 
 
     override fun onQueryTextChange(newText: String?): Boolean {
-       // WeatherManager().makeRequestUsingOKHTTP(newText!!, ::ui, ::onError)
+        if(newText!!.isEmpty())
+            WeatherManager().makeRequestUsingOKHTTP("Cairo",::ui, ::onError)
         return true
     }
     fun ui(weather: WeatherInfo) {
         runOnUiThread {
             getTemperature(weather.main)
             binding.textViewCity.text = weather.name
-            binding.textViewTemp.text = "$weather.temperature C"
+            binding.textViewTemp.text = weather.temperature+"ْ C"
             binding.textViewMainWeather.text = weather.main
         }
 

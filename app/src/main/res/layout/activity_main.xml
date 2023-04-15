@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@drawable/rounded"
@@ -76,9 +77,10 @@
         android:layout_width="94dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="120dp"
-        android:text="22"
+        android:maxLines="1"
+        tools:text="22"
         android:textColor="@color/white"
-        android:textSize="53dp"
+        android:textSize="52sp"
         app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView_shower"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/text_view_city"
@@ -89,24 +91,24 @@
         android:id="@+id/text_view_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="200dp"
-        android:text="city"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="52dp"
         android:textSize="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        tools:text="city" />
 
     <TextView
         android:id="@+id/text_view_main_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="main"
         android:textSize="24dp"
         app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView_shower"
-        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toEndOf="@+id/text_View_temp"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_city" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_city"
+        tools:text="main" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
