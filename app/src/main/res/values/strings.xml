@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Clothing_Suggester</string>
+    <string name="search">Search</string>
 </resources>
