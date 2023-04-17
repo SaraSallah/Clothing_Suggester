@@ -84,28 +84,28 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
 
-    fun callClothesManager(list: List<Int>) {
+    fun callClothesManager(session:String) {
         val clothesManager = ClothesManager(this)
-        clothesManager.saveClothesInSharedPreferenc(list)
-        val imageIds = clothesManager.getImageIds()
-        val randomImageResourceId = clothesManager.getRandomImageResourceId()
+        clothesManager.saveClothesInSharedPreferenc()
+        val imageIds = clothesManager.getImageIds(session)
+        val randomImageResourceId = clothesManager.getRandomImageResourceId(session)
         if (randomImageResourceId != null) {
             val randomDrawable = ContextCompat.getDrawable(this, randomImageResourceId)
             // Set the randomDrawable to your ImageView or any other appropriate UI element
             binding.imageViewClothes.setImageResource(randomImageResourceId)
 
         }
-        clothesManager.removeUsedImageResourceId()
+        clothesManager.removeUsedImageResourceId(session)
 
     }
-    fun clothesDependOnTemperature(temperatur: Int): List<Int> {
-        var finalList = emptyList<Int>()
+    fun clothesDependOnTemperature(temperatur: Int): String {
+        var finalSession = ""
 
-        if (temperatur in 15..20) finalList = seasonalImageManager.getImageList("autumn")
-        if (temperatur in 21..40) finalList = seasonalImageManager.getImageList("summer")
-        if (temperatur in 0..15) finalList = seasonalImageManager.getImageList("winter")
+        if (temperatur in 15..20) finalSession = "autumn"
+        if (temperatur in 21..40) finalSession = "summer"
+        if (temperatur in 0..15) finalSession = "winter"
 
-        return finalList
+        return finalSession
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
