@@ -5,17 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/rounded"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="-7dp">
-
-
-    </View>
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -30,94 +19,132 @@
         android:theme="@style/ThemeOverlay.Material3.Search"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView_sunny"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/sunny"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="132dp" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView_cloud"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/cloud"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="132dp" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView_shower"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/shower"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/text_View_temp"
-        android:layout_width="94dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:maxLines="1"
-        tools:text="22"
-        android:textColor="@color/white"
-        android:textSize="52sp"
-        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView_shower"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_view_city"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_city"
-        tools:ignore="NotSibling" />
+        android:background="@drawable/search_rounded"
+        android:layout_margin="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView_cloud"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_tiny"
+                android:padding="@dimen/padding_small"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/cloud"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/text_View_temp"
+                style="@style/HeaderTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_temp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textSize="@dimen/text_temp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="22" />
+
+            <TextView
+                android:id="@+id/text_View_temp_c"
+                style="@style/HeaderTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_size_huge"
+                android:maxLines="1"
+                android:text=" ْ C"
+                android:textSize="24dp"
+                app:layout_constraintStart_toEndOf="@+id/text_View_temp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/text_view_city"
+                style="@style/HeaderCityStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_weight="1"
+                android:textColor="@color/secondary_800"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_View_temp"
+                tools:ignore="MissingConstraints"
+                tools:text="Ciiittyyyyyyyy" />
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/HeaderTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/text_size_large"
+                android:paddingHorizontal="@dimen/margin_medium"
+                tools:text="Weather Wardrobe"
+                android:textSize="@dimen/margin_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_city" />
+
+            <TextView
+
+                android:id="@+id/text_view_main_weather"
+                style="@style/HeaderMainStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingBottom="@dimen/padding_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/lottieAnimationView_cloud"
+                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView_cloud"
+                tools:text="main" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/text_view_city"
+        style="@style/HeaderTextStyle"
+        android:id="@+id/sugest_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
-        android:textSize="52dp"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
-        tools:text="city" />
-
-    <TextView
-        android:id="@+id/text_view_main_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView_shower"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toEndOf="@+id/text_View_temp"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_city"
-        tools:text="main" />
+        android:paddingHorizontal="@dimen/margin_medium"
+        android:text="Weather Wardrobe"
+        android:textSize="@dimen/normal_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
 
     <ImageView
         android:id="@+id/image_view_clothes"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="@drawable/rounded"
         android:paddingBottom="0dp"
-        android:src="@color/primary_100"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sugest_weather"
+        app:layout_constraintVertical_bias="0.552" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

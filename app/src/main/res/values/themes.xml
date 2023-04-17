@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Clothing_Suggester" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -12,5 +12,23 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="HeaderTextStyle">
+        <item name="android:textColor">@color/secondary_200</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+
+    </style>
+
+    <style name="HeaderMainStyle">
+        <item name="android:textColor">@color/secondary_800</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+
+    </style>
+
+    <style name="HeaderCityStyle">
+        <item name="android:textColor">@color/secondary_800</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+
     </style>
 </resources>
