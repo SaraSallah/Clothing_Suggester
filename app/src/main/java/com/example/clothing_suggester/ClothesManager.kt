@@ -12,9 +12,9 @@ class ClothesManager(context : Context) {
     private val sharedPreferences :SharedPreferences =
         context.getSharedPreferences(Constant.SHARED_PREF_MAME,Context.MODE_PRIVATE)
     private val summerList = listOf<Int>(
-        R.drawable.summ1,
-        R.drawable.summ2,
-        R.drawable.summ3,
+        R.drawable.sum1,
+        R.drawable.sum2,
+        R.drawable.sum3,
         // Add more image resource IDs as needed
     )
     fun saveClothesInSharedPreferenc(list : List<Int>) {

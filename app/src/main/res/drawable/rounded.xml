@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners
-        android:bottomRightRadius="@dimen/padding_large"
-        android:bottomLeftRadius="@dimen/padding_large"/>
-    <solid
-        android:color="@color/primary_300"/>
-    <gradient
-        android:startColor="@color/primary_300"
-        android:endColor="@color/primary_200"
-        android:centerColor="@color/primary_300"
-        android:centerX="@integer/material_motion_duration_long_1"/>
+        android:radius="@dimen/text_size_large"/>
+
+
 </shape>
