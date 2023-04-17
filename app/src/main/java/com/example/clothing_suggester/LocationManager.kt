@@ -2,12 +2,16 @@ package com.example.clothing_suggester.data
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
+import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.example.clothing_suggester.MainActivity
 import com.google.android.gms.location.*
-import com.google.android.gms.location.LocationResult
-class LocationManager(private val context: Context, private val locationCallback: LocationCallback) {
+class LocationManager(private val context: Context, private val locationCallback: LocationCallback):LocationListener {
 
     private var fusedLocationClient: FusedLocationProviderClient? = null
 
@@ -16,7 +20,7 @@ class LocationManager(private val context: Context, private val locationCallback
 
         val locationRequest = LocationRequest.create()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 50000 // Update interval in milliseconds
+        locationRequest.interval = 500000 // Update interval in milliseconds
 
         if (ActivityCompat.checkSelfPermission(
                 context,
@@ -34,6 +38,40 @@ class LocationManager(private val context: Context, private val locationCallback
             )
         }
     }
+    fun checkPermision() {
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            // If permission is granted, get current location
+            getCurrentLocation()
+        } else {
+            // If permission is not granted, request for location permission
+            ActivityCompat.requestPermissions(
+                context as Activity,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                MainActivity.REQUEST_LOCATION_PERMISSION
+            )
+        }
+    }
+
+
+
+
+
+    override fun onLocationChanged(location: Location) {
+    }
+
+
+
 
     fun stopLocationUpdates() {
         fusedLocationClient?.removeLocationUpdates(locationCallback)

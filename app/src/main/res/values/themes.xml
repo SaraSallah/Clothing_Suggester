@@ -13,4 +13,16 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="HeaderTextStyle">
+        <item name="android:textColor">@color/secondary_200</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+
+    </style>
+
+    <style name="HeaderMainStyle">
+        <item name="android:textColor">@color/secondary_400</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+
+    </style>
 </resources>
