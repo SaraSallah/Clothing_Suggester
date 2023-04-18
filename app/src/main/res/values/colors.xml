@@ -13,8 +13,9 @@
     <color name="black_78">#C7121212</color>
     <color name="black_60">#99121212</color>
     <color name="black_50">#80121212</color>
-    <color name="black_38">#61121212</color>
+    <color name="black_38">#00121212</color>
     <color name="black_8">#14121212</color>
+    <color name="back_ground">#14B9B7B7</color>
 
     <color name="secondary_50">#938F99</color>
     <color name="secondary_100">#bde1ff</color>
