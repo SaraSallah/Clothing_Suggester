@@ -1,4 +1,6 @@
-package com.example.clothing_suggester
+package com.example.clothing_suggester.data
+
+import com.example.clothing_suggester.R
 
 class SeasonalImageManager {
 

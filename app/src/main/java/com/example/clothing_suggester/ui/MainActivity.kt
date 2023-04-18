@@ -10,7 +10,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.clothing_suggester.ClothesManager
+import com.example.clothing_suggester.data.ClothesManager
 import com.example.clothing_suggester.R
 import com.example.clothing_suggester.data.model.MyLocation
 import com.example.clothing_suggester.data.model.WeatherInfo

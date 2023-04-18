@@ -1,4 +1,4 @@
-package com.example.clothing_suggester
+package com.example.clothing_suggester.data
 
 import android.annotation.SuppressLint
 import android.content.Context
