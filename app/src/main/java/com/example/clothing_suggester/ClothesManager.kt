@@ -1,29 +1,27 @@
 package com.example.clothing_suggester
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.clothing_suggester.util.Constant
+import com.example.clothing_suggester.util.Constants
 
 class ClothesManager(context : Context) {
-    val seasonalImageManager = SeasonalImageManager()
-
+    companion object {
+        private val seasonalImageManager = SeasonalImageManager()
+    }
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(Constant.SHARED_PREF_MAME, Context.MODE_PRIVATE)
-    private val summerList = listOf<Int>(
-        R.drawable.sum1,
-        R.drawable.sum2,
-        R.drawable.sum3,
-    )
+        context.getSharedPreferences(Constants.SHARED_PREF_MAME, Context.MODE_PRIVATE)
 
-    fun saveClothesInSharedPreferenc() {
-        val autumnList = seasonalImageManager.getImageList("autumn").joinToString(",")
-        val summList = seasonalImageManager.getImageList("summer").joinToString(",")
-        val winterList = seasonalImageManager.getImageList("winter").joinToString(",")
+    @SuppressLint("ApplySharedPref")
+    fun saveClothesInSharedPreferences() {
+        val autumn = seasonalImageManager.getImageList("autumn").joinToString(",")
+        val summer = seasonalImageManager.getImageList("summer").joinToString(",")
+        val winter = seasonalImageManager.getImageList("winter").joinToString(",")
 
         val editor = sharedPreferences.edit()
-        editor.putString(Constant.AUTUMN, autumnList)
-        editor.putString(Constant.SUMMER, summList)
-        editor.putString(Constant.WINTER, winterList)
+        editor.putString(Constants.AUTUMN, autumn)
+        editor.putString(Constants.SUMMER, summer)
+        editor.putString(Constants.WINTER, winter)
         editor.commit()
     }
 
@@ -52,7 +50,7 @@ class ClothesManager(context : Context) {
             imageIds.removeAt(0)
             val editor = sharedPreferences.edit()
             editor.putString(
-                Constant.KEY,
+                key,
                 imageIds.joinToString(",")
             )
             editor.apply()

@@ -1,13 +1,13 @@
-package com.example.clothing_suggester.data
+package com.example.clothing_suggester.data.model
 
 import com.google.gson.annotations.SerializedName
 
 
 data class WeatherInformation(
     @SerializedName("temp") val temp: Double,
-    @SerializedName("feels_like") val feels_like: String,
-    @SerializedName("temp_min")val temp_min: String,
-    @SerializedName("temp_max")val temp_max: String,
+    @SerializedName("feels_like") val feelsLike: String,
+    @SerializedName("temp_min")val tempMin: String,
+    @SerializedName("temp_max")val tempMax: String,
     @SerializedName("pressure")val pressure: String,
     @SerializedName("humidity") val humidity: String
 )

@@ -1,4 +1,4 @@
-package com.example.clothing_suggester.data.remote
+package com.example.clothing_suggester.data.source
 
 import android.Manifest
 import android.app.Activity
@@ -35,7 +35,7 @@ class LocationManager(private val context: Context, private val locationCallback
             )
         }
     }
-    fun checkPermision() {
+    fun checkPermission() {
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION

@@ -28,7 +28,7 @@
 
     <style name="HeaderCityStyle">
         <item name="android:textColor">@color/secondary_900</item>
-        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
     </style>
     <style name="HeaderDateStyle">
         <item name="android:textColor">@color/black_50</item>

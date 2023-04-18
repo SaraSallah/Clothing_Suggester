@@ -1,4 +1,4 @@
-package com.example.clothing_suggester.data.remote
+package com.example.clothing_suggester.data.source
 
 import android.util.Log
 import com.example.clothing_suggester.data.model.WeatherInfo
@@ -12,8 +12,11 @@ class WeatherManager {
 
     private val client: OkHttpClient
 
+    companion object {
+        private const val API_KEY = "85a3186a733dc2ad66e00e5e5eaea084"
+    }
+
     init {
-        // Create OkHttpClient with logging interceptor for debug purposes
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -21,6 +24,7 @@ class WeatherManager {
             .addInterceptor(loggingInterceptor)
             .build()
     }
+
     fun makeRequestUsingOKHTTP(
         city: String,
         onResult: (WeatherInfo) -> Unit,
@@ -85,8 +89,5 @@ class WeatherManager {
         return temperatureInCelsius.toInt()
     }
 
-    companion object {
-        private const val API_KEY = "85a3186a733dc2ad66e00e5e5eaea084"
-    }
 
 }

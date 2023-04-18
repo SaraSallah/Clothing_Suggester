@@ -12,10 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.clothing_suggester.ClothesManager
 import com.example.clothing_suggester.R
-import com.example.clothing_suggester.data.remote.LocationManager
 import com.example.clothing_suggester.data.model.MyLocation
 import com.example.clothing_suggester.data.model.WeatherInfo
-import com.example.clothing_suggester.data.remote.WeatherManager
+import com.example.clothing_suggester.data.source.LocationManager
+import com.example.clothing_suggester.data.source.WeatherManager
 import com.example.clothing_suggester.databinding.ActivityMainBinding
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -26,8 +26,9 @@ import java.util.*
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var locationManager: LocationManager
-    private lateinit var myLoction: MyLocation
-    val currentDate = Date()
+    private lateinit var myLocation: MyLocation
+    private val currentDate = Date()
+
     companion object {
         const val REQUEST_LOCATION_PERMISSION = 1
     }
@@ -40,23 +41,32 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         setContentView(binding.root)
         binding.searchBar.setOnQueryTextListener(this)
         getLocationCallBack()
-        locationManager.checkPermision()
+        locationManager.checkPermission()
         getCurrentDate()
 
     }
-    fun getLocationCallBack(){
+
+    private fun getLocationCallBack() {
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 locationResult.lastLocation?.let { location ->
                     val latitude = location.latitude
                     val longitude = location.longitude
                     Log.v("KK", "$latitude lon $longitude")
-                    WeatherManager().getCurrentWeather(latitude, longitude, ::bindAPiDataInScreen, ::onError)
-                    myLoction = MyLocation(latitude, longitude)
-                    val cityName  =getCityName(this@MainActivity,latitude,longitude)
-                    Log.v("City",cityName!!)
+//                    WeatherManager().getCurrentWeather(
+//                        latitude,
+//                        longitude,
+//                        ::bindAPiDataInScreen,
+//                        ::onError
+//                    )
+                    myLocation = MyLocation(latitude, longitude)
+                    val cityName = getCityName(this@MainActivity, latitude, longitude)
+                    Log.v("City", cityName)
+                    WeatherManager().makeRequestUsingOKHTTP(
+                        cityName, ::bindAPiDataInScreen,
+                        ::onError
+                    )
 
-//                    WeatherManager().makeRequestUsingOKHTTP(cityName!!,::bindAPiDataInScreen,::onError)
                 }
             }
         }
@@ -75,7 +85,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         try {
             val addressList = geocoder.getFromLocation(latitude, longitude, 1)
             if (addressList != null && addressList.isNotEmpty()) {
-                return addressList[0].locality ?: ""
+                return addressList[0].subAdminArea ?: ""
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -98,25 +108,25 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                // If location permission is granted, get current location
+            if (grantResults.isNotEmpty() && grantResults[0] ==
+                PackageManager.PERMISSION_GRANTED && grantResults[1] ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
                 locationManager.getCurrentLocation()
             } else {
-                // If location permission is denied, show a toast message
                 Toast.makeText(this, "Location permission denied", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
 
-    fun callClothesManager(session:String) {
+    private fun callClothesManager(session: String) {
         val clothesManager = ClothesManager(this)
-        clothesManager.saveClothesInSharedPreferenc()
-        val imageIds = clothesManager.getImageIds(session)
+        clothesManager.saveClothesInSharedPreferences()
+        clothesManager.getImageIds(session)
         val randomImageResourceId = clothesManager.getRandomImageResourceId(session)
         if (randomImageResourceId != null) {
-            val randomDrawable = ContextCompat.getDrawable(this, randomImageResourceId)
-            // Set the randomDrawable to your ImageView or any other appropriate UI element
+            ContextCompat.getDrawable(this, randomImageResourceId)
             binding.imageViewClothes.setImageResource(randomImageResourceId)
 
         }
@@ -144,23 +154,26 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextChange(newText: String?): Boolean {
         if (newText!!.isEmpty()) {
-            WeatherManager().getCurrentWeather(
-                myLoction.latitude,
-                myLoction.longitude,
-                ::bindAPiDataInScreen,
+            val cityName =
+                getCityName(this@MainActivity, myLocation.latitude, myLocation.longitude)
+            Log.v("City", cityName)
+            WeatherManager().makeRequestUsingOKHTTP(
+                cityName, ::bindAPiDataInScreen,
                 ::onError
             )
+
         }
 
         return true
     }
 
+    @SuppressLint("SetTextI18n")
     fun bindAPiDataInScreen(weather: WeatherInfo) {
         runOnUiThread {
             getTemperature(weather.main)
             callClothesManager(clothesDependOnTemperature(weather.temperature.toInt()))
             binding.textViewCity.text = weather.name
-            binding.textViewTemp.text ="${weather.temperature} ْ "
+            binding.textViewTemp.text = "${weather.temperature}ْ C"
             binding.textViewMainWeather.text = weather.main
         }
 
