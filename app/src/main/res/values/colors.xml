@@ -16,7 +16,7 @@
     <color name="black_38">#61121212</color>
     <color name="black_8">#14121212</color>
 
-    <color name="secondary_50">#eaf5ff</color>
+    <color name="secondary_50">#938F99</color>
     <color name="secondary_100">#bde1ff</color>
     <color name="secondary_200">#9dd3ff</color>
     <color name="secondary_300">#70bfff</color>
@@ -31,6 +31,8 @@
     <color name="primary_200">#C9EEFF</color>
     <color name="primary_100">#C9EEFF</color>
     <color name="primary_400">#0081C9</color>
+
+
 
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -39,9 +39,7 @@
                 android:id="@+id/lottieAnimationView_cloud"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:layout_marginEnd="@dimen/margin_tiny"
-                android:padding="@dimen/padding_small"
+                android:layout_marginEnd="@dimen/margin_small"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -55,11 +53,11 @@
                 style="@style/HeaderTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_temp"
                 android:layout_marginTop="@dimen/margin_small"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textSize="@dimen/text_temp"
+                app:layout_constraintEnd_toStartOf="@+id/lottieAnimationView_cloud"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="22" />
@@ -85,7 +83,6 @@
                 android:layout_marginStart="@dimen/margin_medium"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:layout_weight="1"
-                android:textColor="@color/secondary_800"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_View_temp"
                 tools:ignore="MissingConstraints"
@@ -93,16 +90,15 @@
 
             <TextView
                 android:id="@+id/date"
-                style="@style/HeaderTextStyle"
+                style="@style/HeaderDateStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_medium"
-                android:layout_marginTop="@dimen/text_size_large"
-                android:paddingHorizontal="@dimen/margin_medium"
-                tools:text="Weather Wardrobe"
+                android:layout_margin="@dimen/margin_medium"
                 android:textSize="@dimen/margin_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_city" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view_city"
+                tools:text="Weather Wardrobe" />
 
             <TextView
 
@@ -110,9 +106,11 @@
                 style="@style/HeaderMainStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small"
                 android:layout_weight="1"
-                android:paddingHorizontal="@dimen/padding_large"
-                android:paddingBottom="@dimen/padding_large"
+                android:gravity="center"
+                android:textSize="@dimen/normal_text"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/lottieAnimationView_cloud"
                 app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView_cloud"
@@ -123,21 +121,22 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        style="@style/HeaderTextStyle"
+        style="@style/HeaderCityStyle"
         android:id="@+id/sugest_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_medium"
         android:text="Weather Wardrobe"
-        android:textSize="@dimen/normal_text"
+        app:layout_constraintBottom_toTopOf="@id/image_view_clothes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+
 
     <ImageView
         android:id="@+id/image_view_clothes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/margin_medium"
         android:background="@drawable/rounded"
         android:paddingBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

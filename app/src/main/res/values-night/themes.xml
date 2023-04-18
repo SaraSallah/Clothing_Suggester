@@ -19,13 +19,16 @@
 
     </style>
     <style name="HeaderMainStyle">
-        <item name="android:textColor">@color/secondary_800</item>
+        <item name="android:textColor">@color/primary_300</item>
         <item name="android:textSize">@dimen/margin_medium</item>
 
     </style>
     <style name="HeaderCityStyle">
-        <item name="android:textColor">@color/secondary_800</item>
+        <item name="android:textColor">@color/primary_300</item>
         <item name="android:textSize">@dimen/normal_text</item>
-
+    </style>
+    <style name="HeaderDateStyle">
+        <item name="android:textColor">@color/secondary_50</item>
+        <item name="android:textSize">@dimen/padding_medium</item>
     </style>
 </resources>

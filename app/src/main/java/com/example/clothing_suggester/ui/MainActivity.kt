@@ -1,6 +1,9 @@
 package com.example.clothing_suggester.ui
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
@@ -16,6 +19,7 @@ import com.example.clothing_suggester.data.remote.WeatherManager
 import com.example.clothing_suggester.databinding.ActivityMainBinding
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -49,17 +53,36 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                     Log.v("KK", "$latitude lon $longitude")
                     WeatherManager().getCurrentWeather(latitude, longitude, ::bindAPiDataInScreen, ::onError)
                     myLoction = MyLocation(latitude, longitude)
+                    val cityName  =getCityName(this@MainActivity,latitude,longitude)
+                    Log.v("City",cityName!!)
+
+//                    WeatherManager().makeRequestUsingOKHTTP(cityName!!,::bindAPiDataInScreen,::onError)
                 }
             }
         }
         locationManager = LocationManager(this, locationCallback)
     }
 
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     fun getCurrentDate() {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy")
         val formattedDate = dateFormat.format(currentDate)
         binding.date.text = "Today : $formattedDate"
 
+    }
+    fun getCityName(context: Context, latitude: Double, longitude: Double): String {
+        val geocoder = Geocoder(context)
+        try {
+            val addressList = geocoder.getFromLocation(latitude, longitude, 1)
+            if (addressList != null && addressList.isNotEmpty()) {
+                return addressList[0].locality ?: ""
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
+        return "City not found"
     }
 
     override fun onStop() {
@@ -100,12 +123,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         clothesManager.removeUsedImageResourceId(session)
 
     }
-    fun clothesDependOnTemperature(temperatur: Int): String {
+    private fun clothesDependOnTemperature(temperature: Int): String {
         var finalSession = ""
 
-        if (temperatur in 15..20) finalSession = "autumn"
-        if (temperatur in 21..40) finalSession = "summer"
-        if (temperatur in 0..15) finalSession = "winter"
+        if (temperature in 15..20) finalSession = "autumn"
+        if (temperature in 21..40) finalSession = "summer"
+        if (temperature in 0..15) finalSession = "winter"
 
         return finalSession
     }
@@ -142,7 +165,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         }
 
     }
-    fun getTemperature(mainWeather: String) {
+    private fun getTemperature(mainWeather: String) {
         when (mainWeather) {
             "Clear" -> binding.lottieAnimationViewCloud.setAnimation(R.raw.clear)
             "Rain" -> binding.lottieAnimationViewCloud.setAnimation(R.raw.shower)
