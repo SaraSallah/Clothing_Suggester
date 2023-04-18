@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var locationManager: LocationManager
     private lateinit var myLoction: MyLocation
     val currentDate = Date()
-
-    val seasonalImageManager = SeasonalImageManager()
-
     companion object {
         const val REQUEST_LOCATION_PERMISSION = 1
     }
@@ -36,21 +33,24 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.searchBar.setOnQueryTextListener(this)
+        getLocationCallBack()
+        locationManager.checkPermision()
+        getCurrentDate()
+
+    }
+    fun getLocationCallBack(){
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 locationResult.lastLocation?.let { location ->
                     val latitude = location.latitude
                     val longitude = location.longitude
                     Log.v("KK", "$latitude lon $longitude")
-                    WeatherManager().getCurrentWeather(latitude, longitude, ::ui, ::onError)
+                    WeatherManager().getCurrentWeather(latitude, longitude, ::bindAPiDataInScreen, ::onError)
                     myLoction = MyLocation(latitude, longitude)
                 }
             }
         }
         locationManager = LocationManager(this, locationCallback)
-        locationManager.checkPermision()
-        getCurrentDate()
-
     }
 
     fun getCurrentDate() {
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         query.let {
             binding.apply {
-                WeatherManager().makeRequestUsingOKHTTP(it!!, ::ui, ::onError)
+                WeatherManager().makeRequestUsingOKHTTP(it!!, ::bindAPiDataInScreen, ::onError)
             }
         }
         return true
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             WeatherManager().getCurrentWeather(
                 myLoction.latitude,
                 myLoction.longitude,
-                ::ui,
+                ::bindAPiDataInScreen,
                 ::onError
             )
         }
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         return true
     }
 
-    fun ui(weather: WeatherInfo) {
+    fun bindAPiDataInScreen(weather: WeatherInfo) {
         runOnUiThread {
             getTemperature(weather.main)
             callClothesManager(clothesDependOnTemperature(weather.temperature.toInt()))

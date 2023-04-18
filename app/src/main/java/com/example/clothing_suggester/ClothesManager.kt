@@ -47,17 +47,16 @@ class ClothesManager(context : Context) {
         return shuffledIds.firstOrNull()
     }
 
-    // Function to remove the used image resource ID from the shuffled array
     fun removeUsedImageResourceId(key: String) {
-        val imageIds = getImageIds(key).toMutableList() // Convert to mutable list
+        val imageIds = getImageIds(key).toMutableList()
         if (imageIds.isNotEmpty()) {
-            imageIds.removeAt(0) // Remove the first element, which represents the used image resource ID
+            imageIds.removeAt(0)
             val editor = sharedPreferences.edit()
             editor.putString(
                 Constant.KEY,
                 imageIds.joinToString(",")
-            ) // Convert back to comma-separated string
-            editor.apply() // Use apply() instead of commit() for asynchronous saving
+            )
+            editor.apply()
         }
     }
 
