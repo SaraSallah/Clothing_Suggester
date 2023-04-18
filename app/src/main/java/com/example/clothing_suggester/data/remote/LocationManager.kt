@@ -1,15 +1,12 @@
-package com.example.clothing_suggester.data
+package com.example.clothing_suggester.data.remote
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Bundle
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.example.clothing_suggester.MainActivity
+import com.example.clothing_suggester.ui.MainActivity
 import com.google.android.gms.location.*
 class LocationManager(private val context: Context, private val locationCallback: LocationCallback):LocationListener {
 

@@ -1,11 +1,9 @@
-package com.example.clothing_suggester.data
-
-import com.example.clothing_suggester.R
+package com.example.clothing_suggester
 
 class SeasonalImageManager {
 
     fun getImageList(season: String): List<Int> {
-        return when (season.toLowerCase()) {
+        return when (season) {
             "summer" -> getSummerList()
             "autumn" -> getAutumnList()
             "winter" -> getWinterList()
@@ -19,7 +17,7 @@ class SeasonalImageManager {
             R.drawable.sum2,
             R.drawable.sum3,
             R.drawable.sum4,
-            R.drawable.sum5,
+//            R.drawable.sum5,
             R.drawable.sum6,
             R.drawable.sum7,
             R.drawable.sum8,

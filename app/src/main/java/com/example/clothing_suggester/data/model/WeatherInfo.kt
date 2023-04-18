@@ -1,4 +1,4 @@
-package com.example.clothing_suggester.data
+package com.example.clothing_suggester.data.model
 
 data class WeatherInfo(
     val name: String,

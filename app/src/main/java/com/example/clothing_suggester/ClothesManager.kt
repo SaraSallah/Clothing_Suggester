@@ -2,7 +2,6 @@ package com.example.clothing_suggester
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.clothing_suggester.data.SeasonalImageManager
 import com.example.clothing_suggester.util.Constant
 
 class ClothesManager(context : Context) {

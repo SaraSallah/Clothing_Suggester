@@ -1,6 +1,5 @@
 package com.example.clothing_suggester.data
 
-import com.google.gson.annotations.SerializedName
 
 data class WeatherInformation(
     val temp: Double,

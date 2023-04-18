@@ -1,8 +1,8 @@
-package com.example.clothing_suggester
+package com.example.clothing_suggester.data.remote
 
 import android.util.Log
-import com.example.clothing_suggester.data.WeatherInfo
-import com.example.clothing_suggester.data.WeatherResponse
+import com.example.clothing_suggester.data.model.WeatherInfo
+import com.example.clothing_suggester.data.model.WeatherResponse
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,4 +1,4 @@
-package com.example.clothing_suggester
+package com.example.clothing_suggester.ui
 
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -7,10 +7,12 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.clothing_suggester.data.LocationManager
-import com.example.clothing_suggester.data.MyLocation
-import com.example.clothing_suggester.data.SeasonalImageManager
-import com.example.clothing_suggester.data.WeatherInfo
+import com.example.clothing_suggester.ClothesManager
+import com.example.clothing_suggester.R
+import com.example.clothing_suggester.data.remote.LocationManager
+import com.example.clothing_suggester.data.model.MyLocation
+import com.example.clothing_suggester.data.model.WeatherInfo
+import com.example.clothing_suggester.data.remote.WeatherManager
 import com.example.clothing_suggester.databinding.ActivityMainBinding
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -72,7 +74,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == MainActivity.REQUEST_LOCATION_PERMISSION) {
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 // If location permission is granted, get current location
                 locationManager.getCurrentLocation()
