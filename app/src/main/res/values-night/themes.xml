@@ -3,32 +3,40 @@
     <style name="Theme.Clothing_Suggester" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/secondary_600</item>
-        <item name="colorPrimaryVariant">@color/secondary_600</item>
-        <item name="colorOnPrimary">@color/black_60</item>
+        <item name="colorPrimaryVariant">@color/secondary_800</item>
+        <item name="android:colorBackground">@color/black_38</item>
+        <item name="android:windowBackground">@color/black_38</item>
+
+        <item name="colorOnPrimary">@color/black_38</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary_600</item>
-        <item name="colorSecondaryVariant">@color/secondary_600</item>
+        <item name="colorSecondary">@color/secondary_800</item>
+        <item name="colorSecondaryVariant">@color/secondary_800</item>
         <item name="colorOnSecondary">@color/black_8</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor">@color/secondary_400</item>
     </style>
+        <!-- Customize your theme here. -->
     <style name="HeaderTextStyle">
-        <item name="android:textColor">@color/secondary_200</item>
+        <item name="android:textColor">@color/black_60</item>
         <item name="android:textSize">@dimen/text_size_large</item>
 
     </style>
+
     <style name="HeaderMainStyle">
-        <item name="android:textColor">@color/primary_300</item>
-        <item name="android:textSize">@dimen/margin_medium</item>
+        <item name="android:textColor">@color/secondary_900</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
 
     </style>
     <style name="HeaderCityStyle">
-        <item name="android:textColor">@color/primary_300</item>
+        <item name="android:textColor">@color/secondary_900</item>
         <item name="android:textSize">@dimen/normal_text</item>
     </style>
     <style name="HeaderDateStyle">
-        <item name="android:textColor">@color/secondary_50</item>
+        <item name="android:textColor">@color/black_50</item>
         <item name="android:textSize">@dimen/padding_medium</item>
+    </style>
+    <style name="HeaderSuggStyle">
+        <item name="android:textColor">@color/secondary_200</item>
+        <item name="android:textSize">@dimen/padding_large</item>
     </style>
 </resources>

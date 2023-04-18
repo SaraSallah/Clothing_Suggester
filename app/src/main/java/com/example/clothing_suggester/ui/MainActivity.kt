@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             getTemperature(weather.main)
             callClothesManager(clothesDependOnTemperature(weather.temperature.toInt()))
             binding.textViewCity.text = weather.name
-            binding.textViewTemp.text = weather.temperature
+            binding.textViewTemp.text ="${weather.temperature} ْ "
             binding.textViewMainWeather.text = weather.main
         }
 

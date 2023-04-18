@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,7 +24,8 @@
         android:id="@+id/materialCardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_rounded"
+        android:backgroundTint="@color/secondary_200"
+        app:cardCornerRadius="@dimen/margin_large"
         android:layout_margin="@dimen/margin_medium"
         app:layout_constraintTop_toBottomOf="@+id/search_bar"
         android:layout_marginHorizontal="@dimen/margin_medium"
@@ -37,8 +39,8 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieAnimationView_cloud"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="@dimen/margin_small"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,14 +64,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="22" />
 
+
             <TextView
                 android:id="@+id/text_View_temp_c"
                 style="@style/HeaderTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_size_huge"
+                android:layout_marginTop="52dp"
                 android:maxLines="1"
-                android:text=" ْ C"
+                android:text="C"
+                android:textStyle="bold"
                 android:textSize="24dp"
                 app:layout_constraintStart_toEndOf="@+id/text_View_temp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -121,26 +125,25 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        style="@style/HeaderCityStyle"
         android:id="@+id/sugest_weather"
+        style="@style/HeaderSuggStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium"
-        android:text="Weather Wardrobe"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginVertical="@dimen/margin_medium"
+        android:text="@string/your_outfit_4_today"
         app:layout_constraintBottom_toTopOf="@id/image_view_clothes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
-
-
 
     <ImageView
         android:id="@+id/image_view_clothes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/rounded"
         android:paddingBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="@dimen/margin_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sugest_weather"
         app:layout_constraintVertical_bias="0.552" />
