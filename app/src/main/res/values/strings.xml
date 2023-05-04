@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">Clothing_Suggester</string>
+    <string name="app_name">Clothing Suggester</string>
     <string name="search">Search</string>
+    <string name="your_outfit_4_today">your Outfit 4 today</string>
 </resources>

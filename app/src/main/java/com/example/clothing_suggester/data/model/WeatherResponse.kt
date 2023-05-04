@@ -1,6 +1,4 @@
-package com.example.clothing_suggester.data
-
-import com.google.gson.annotations.SerializedName
+package com.example.clothing_suggester.data.model
 
 data class WeatherResponse(
     val name :String,
